@@ -1,0 +1,83 @@
+Answers:
+
+
+Q1: Cat Pictures Backup
+// ============================================================================= //
+This is more of a math / memory question than a programming question. Given that there are 200,000 write operations and they are distributed:
+
+1. 512 bytes - 20%
+2. 1024 bytes - 30%
+3. 4096 bytes - 40%
+4. 16384 bytes - 10%
+
+You notice that these percentages do add up to 100%, which indicates each write operation has a byte length. This becomes a relatively simple question.
+
+The total memory that 200,000 write operations take is: 
+
+(200,000) * (0.2 * 512 + 0.3 * 1024 + 0.4 * 4096 + 0.1 * 16384) or  737280000 bytes / second
+
+Converting this to minutes ( divide by 60 ) and to Gigabytes ( divide by 1024 ^ 3), you get a total of 41.198 GB / minute
+
+In order to find how many minutes it takes to get to 86% of 513GB, you simply (0.86 * 513) / (41.198) to get 10.7.
+
+Rounded to the nearest byte, the answer is 11.
+
+Q2: DFS in Binary Tree
+// ============================================================================= //
+This is a tricky DFS algorithm to step through. You will notice that this tree contains a parent pointer and processes every node:
+
+1. Prints element in node
+2. Recurses Right
+3. Recurses Up
+4. Recurses Left
+
+Drawing a tree in this situation and stepping through each recursive call helps.
+
+The order of calls are:
+
+DFS(11) -> DFS(5) -> DFS(8) -> DFS(5) -> DFS(1) -> DFS(5) ...
+
+Stepping through, you get an answer of:
+
+11 5 8 5 1 5 4 3 9 2 12 7 1 8 4
+
+
+Q3: Incorrect Binary Search
+// ============================================================================= //
+Just looking at the code for a language of your choice tells you that this is a binary search algorithm written iteratively.
+It is very close to being correct, it is missing a check every time mid is calculated to see if it is equal to the target.
+
+The line below will complete the code:
+
+	if(arr[mid] == target){
+		return mid;
+	}
+
+Without this line of code, this program will fail if it finds the element at any mid index during the search.
+A simple test case will prove this:
+
+{1, 2, 3}, target = 2
+
+The first time we check mid, target == arr[mid], however, the logic will set start = mid+1, thereby skipping over the found element.
+
+Q4: Efficient Memory Layout
+// ============================================================================= //
+Again another memory question. Seems like Pure Storage loves memory questions.
+
+I don't fully understand what the API layer indicates, however the question asks for the number of bytes to store a single record.
+
+Each Record has: 
+1. Page Status - 3 values (2 bits)
+2. Page Index - 364848 values (19 bits)
+3. Access Mode - 6 values (3 bits)
+4. Process ID - 37338 values (16 bits)
+
+Each of these components takes a different number of bits. Add up all of them and you get 40 bits. Divide that by 8 to get a total of 8 bytes.
+
+The answer is 8 bytes.
+
+Q4: Concurrent Container
+// ============================================================================= //
+A threading / lock question.
+
+I am not sure about the answer to this question. I didn't see a problem with the code.
